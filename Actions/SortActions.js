@@ -19,6 +19,14 @@ export const sortByIdDESC = () => ({ type: SORT_BY_ID_CLIENT_DESC });
  */
 export const sortByPriceASC = () => ({ type: SORT_BY_PRICE_CLIENT_ASC });
 /**
- * this action sort price by descending
+ * this action sort by price in descending
  */
 export const sortByPriceDESC = () => ({ type: SORT_BY_PRICE_CLIENT_DESC });
+/**
+ * this action sort products by size in ascending
+ */
+export const sortBySizeASC = () => ({ type: SORT_BY_SIZE_CLIENT_ASC });
+/**
+ * this action sort products by size in descending
+ */
+export const sortBySizeDESC = () => ({ type: SORT_BY_SIZE_CLIENT_DESC });

@@ -35,3 +35,21 @@ describe("Sort by Price DESC", () => {
     expect(actions.sortByPriceDESC()).toEqual(obj);
   });
 });
+
+describe("Sort by Size ASC", () => {
+  it("should has correct type", () => {
+    const obj = {
+      type: ActionTypes.SORT_BY_SIZE_CLIENT_ASC
+    };
+    expect(actions.sortBySizeASC()).toEqual(obj);
+  });
+});
+
+describe("Sort by Size DESC", () => {
+  it("should has correct type", () => {
+    const obj = {
+      type: ActionTypes.SORT_BY_SIZE_CLIENT_DESC
+    };
+    expect(actions.sortBySizeDESC()).toEqual(obj);
+  });
+});
