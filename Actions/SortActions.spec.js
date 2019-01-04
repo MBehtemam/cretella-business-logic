@@ -53,3 +53,12 @@ describe("Sort by Size DESC", () => {
     expect(actions.sortBySizeDESC()).toEqual(obj);
   });
 });
+
+describe("Reset Sort", () => {
+  it("should has correct type", () => {
+    const obj = {
+      type: ActionTypes.SORT_BY_NO_SORT
+    };
+    expect(actions.noSort()).toEqual(obj);
+  });
+});

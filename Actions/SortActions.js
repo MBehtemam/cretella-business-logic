@@ -4,7 +4,8 @@ import {
   SORT_BY_PRICE_CLIENT_ASC,
   SORT_BY_PRICE_CLIENT_DESC,
   SORT_BY_SIZE_CLIENT_ASC,
-  SORT_BY_SIZE_CLIENT_DESC
+  SORT_BY_SIZE_CLIENT_DESC,
+  SORT_BY_NO_SORT
 } from "../Constants/ActionTypes";
 /**
  * this actions sort  products by id in ascending
@@ -30,3 +31,7 @@ export const sortBySizeASC = () => ({ type: SORT_BY_SIZE_CLIENT_ASC });
  * this action sort products by size in descending
  */
 export const sortBySizeDESC = () => ({ type: SORT_BY_SIZE_CLIENT_DESC });
+/**
+ * this action reset the sorting of product
+ */
+export const noSort = () => ({ type: SORT_BY_NO_SORT });

@@ -1,0 +1,1 @@
+const productsReducer = (state = [], action) => {};
