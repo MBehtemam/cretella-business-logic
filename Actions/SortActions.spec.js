@@ -5,7 +5,7 @@ describe("Sort by Id ASC", () => {
     const obj = {
       type: ActionTypes.SORT_BY_ID_CLIENT_ASC
     };
-    expect(actions.sortByIdASC()).toEqual(obj);
+    expect(actions.sortByIdClientASC()).toEqual(obj);
   });
 });
 
@@ -14,7 +14,7 @@ describe("Sort by ID DESC", () => {
     const obj = {
       type: ActionTypes.SORT_BY_ID_CLIENT_DESC
     };
-    expect(actions.sortByIdDESC()).toEqual(obj);
+    expect(actions.sortByIdClientDESC()).toEqual(obj);
   });
 });
 
@@ -23,7 +23,7 @@ describe("Sort by Price ASC", () => {
     const obj = {
       type: ActionTypes.SORT_BY_PRICE_CLIENT_ASC
     };
-    expect(actions.sortByPriceASC()).toEqual(obj);
+    expect(actions.sortByPriceClientASC()).toEqual(obj);
   });
 });
 
@@ -32,7 +32,7 @@ describe("Sort by Price DESC", () => {
     const obj = {
       type: ActionTypes.SORT_BY_PRICE_CLIENT_DESC
     };
-    expect(actions.sortByPriceDESC()).toEqual(obj);
+    expect(actions.sortByPriceClientDESC()).toEqual(obj);
   });
 });
 
@@ -41,7 +41,7 @@ describe("Sort by Size ASC", () => {
     const obj = {
       type: ActionTypes.SORT_BY_SIZE_CLIENT_ASC
     };
-    expect(actions.sortBySizeASC()).toEqual(obj);
+    expect(actions.sortBySizeClientASC()).toEqual(obj);
   });
 });
 
@@ -50,7 +50,7 @@ describe("Sort by Size DESC", () => {
     const obj = {
       type: ActionTypes.SORT_BY_SIZE_CLIENT_DESC
     };
-    expect(actions.sortBySizeDESC()).toEqual(obj);
+    expect(actions.sortBySizeClientDESC()).toEqual(obj);
   });
 });
 
@@ -59,6 +59,6 @@ describe("Reset Sort", () => {
     const obj = {
       type: ActionTypes.SORT_BY_NO_SORT
     };
-    expect(actions.noSort()).toEqual(obj);
+    expect(actions.resetSortClient()).toEqual(obj);
   });
 });

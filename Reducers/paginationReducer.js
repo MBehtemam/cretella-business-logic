@@ -3,7 +3,7 @@ import {
   SET_PAGINATION_PAGE_NUMBER
 } from "../Constants/ActionTypes";
 
-const paginationPageNumberReducer = (state = 1, action) => {
+const paginationReducer = (state = 1, action) => {
   switch (action.type) {
     case SET_PAGINATION_PAGE_NUMBER: {
       return action.payload.number;
@@ -15,4 +15,4 @@ const paginationPageNumberReducer = (state = 1, action) => {
   }
 };
 
-export default paginationPageNumberReducer;
+export default paginationReducer;
