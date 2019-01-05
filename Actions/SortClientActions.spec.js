@@ -1,4 +1,4 @@
-import * as actions from "../Actions/SortActions";
+import * as actions from "./SortClientActions";
 import * as ActionTypes from "../Constants/ActionTypes";
 describe("Sort by Id ASC", () => {
   it("should has correct type", () => {
