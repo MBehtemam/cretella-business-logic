@@ -2,15 +2,42 @@ import {
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_FAILURE,
   FETCH_PRODUCTS_SUCCESS,
-  PRODUCTS_END_OF_PRODUCTS
+  PRODUCTS_END_OF_PRODUCTS,
+  PRODUCTS_ADD_BATCH,
+  PRODUCTS_SET_BATCH
 } from "../Constants/ActionTypes";
 import fetch from "cross-fetch";
 import { ServerMainUrl } from "../Constants/Constants";
+import GenerateProductsRequestUrl from "../Helpers/GenerateRequestProductsUrl";
 
-export const fetchProducts = (page = 1, limits = 15, sort = null) => {
+export const fetchProducts = (
+  reload = false,
+  page = 1,
+  limits = 15,
+  sort = null
+) => {
   return dispatch => {
     dispatch(fetchProductsRequest());
-    fetch();
+    fetch(GenerateProductsRequestUrl(ServerMainUrl, page, limits, sort))
+      .then(
+        response => response.json(),
+        error => {
+          dispatch(fetchProductsFailed());
+        }
+      )
+      .then(json => {
+        dispatch(fetchProductsSuccess()); //successfully fetch
+        if (json.length === 0) {
+          //we haven't any products
+          dispatch(endOfProducts());
+        } else {
+          if (reload) {
+            dispatch(setBatchProduct(json));
+          } else {
+            dispatch(addBatchProducts(json));
+          }
+        }
+      });
   };
 };
 
@@ -18,3 +45,19 @@ export const fetchProducts = (page = 1, limits = 15, sort = null) => {
  * this action is for start requestion
  */
 const fetchProductsRequest = () => ({ type: FETCH_PRODUCTS_REQUEST });
+const fetchProductsFailed = () => ({ type: FETCH_PRODUCTS_FAILURE });
+const fetchProductsSuccess = () => ({ type: FETCH_PRODUCTS_SUCCESS });
+const endOfProducts = () => ({ type: PRODUCTS_END_OF_PRODUCTS });
+const addBatchProducts = products => ({
+  type: PRODUCTS_ADD_BATCH,
+  payload: {
+    products
+  }
+});
+
+const setBatchProduct = products => ({
+  type: PRODUCTS_SET_BATCH,
+  payload: {
+    products
+  }
+});
