@@ -1,7 +1,8 @@
 import {
   FETCH_PRODUCTS_REQUEST,
   FETCH_PRODUCTS_FAILURE,
-  FETCH_PRODUCTS_SUCCESS
+  FETCH_PRODUCTS_SUCCESS,
+  PRODUCTS_END_OF_PRODUCTS
 } from "../Constants/ActionTypes";
 export const defaultState = {
   isFetching: false,
@@ -23,6 +24,11 @@ const fetchStatus = (state = defaultState, action) => {
       return {
         ...state,
         isFetching: false
+      };
+    case PRODUCTS_END_OF_PRODUCTS:
+      return {
+        ...state,
+        endOfProducts: true
       };
     default:
       return state;
