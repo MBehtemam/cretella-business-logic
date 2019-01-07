@@ -5,11 +5,12 @@ import loggerMiddleware from "../../../middleweare/logger";
 import monitorReducerEnhancer from "../../../enhancers/monitorReducer";
 
 const middlewareEnhancer = applyMiddleware(loggerMiddleware, thunkMiddleware);
-const composedEnhancers = compose(
-  middlewareEnhancer,
-  monitorReducerEnhancer
-);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(rootReducer, undefined, composedEnhancers);
+const store = createStore(
+  rootReducer,
+  undefined,
+  composeEnhancers(middlewareEnhancer)
+);
 
 export default store;
