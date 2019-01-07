@@ -9,7 +9,14 @@ import {
 import fetch from "cross-fetch";
 import { ServerMainUrl } from "../Constants/Constants";
 import GenerateProductsRequestUrl from "../Helpers/GenerateRequestProductsUrl";
-
+import ProductReformer from "../Helpers/ProductReformer";
+/**
+ *
+ * @param {Boolean} reload reload whole products list or just add
+ * @param {Number} page pagination number
+ * @param {Number} limits limist of product
+ * @param {Number} sort sort by product
+ */
 export const fetchProducts = (
   reload = false,
   page = 1,
@@ -32,9 +39,13 @@ export const fetchProducts = (
           dispatch(endOfProducts());
         } else {
           if (reload) {
-            dispatch(setBatchProduct(json));
+            dispatch(
+              setBatchProduct(json.map(product => ProductReformer(product)))
+            );
           } else {
-            dispatch(addBatchProducts(json));
+            dispatch(
+              addBatchProducts(json.map(product => ProductReformer(product)))
+            );
           }
         }
       });
