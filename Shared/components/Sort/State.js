@@ -1,8 +1,8 @@
 const mapStateToProps = (state, ownProps) => {
   return {
-    limit: state.limitReducer,
-    pagination: state.paginationReducer,
-    sortByOnServer: state.sortyByOnServer
+    limit: state.limit,
+    pagination: state.pagination,
+    sortByOnServer: state.sortByOnServer
   };
 };
 export default mapStateToProps;
