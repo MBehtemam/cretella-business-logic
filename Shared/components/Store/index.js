@@ -14,8 +14,4 @@ const composedEnhancers = compose(
 
 const store = createStore(rootReducer, undefined, composedEnhancers);
 
-export default class Root extends Component {
-  render() {
-    return <Provider store={store}>{this.props.children}</Provider>;
-  }
-}
+export default store;
