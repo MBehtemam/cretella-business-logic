@@ -98,3 +98,10 @@ export const initialProducts = () => {
     dispatch(fetchProducts(true, pagination, limit, sortByOnServer));
   };
 };
+
+export const loadMoreProducts = () => {
+  return (dispatch, getState) => {
+    const { pagination, limit, sortByOnServer } = getState();
+    dispatch(fetchProducts(false, pagination + 1, limit, sortByOnServer));
+  };
+};
