@@ -62,7 +62,7 @@ const fetchProductsRequest = () => ({ type: FETCH_PRODUCTS_REQUEST });
 const fetchProductsFailed = () => ({ type: FETCH_PRODUCTS_FAILURE });
 const fetchProductsSuccess = () => ({ type: FETCH_PRODUCTS_SUCCESS });
 const endOfProducts = () => ({ type: PRODUCTS_END_OF_PRODUCTS });
-const addBatchProducts = products => ({
+export const addBatchProducts = products => ({
   type: PRODUCTS_ADD_BATCH,
   payload: {
     products
@@ -77,7 +77,8 @@ const setBatchProduct = products => ({
 });
 
 export const initialProducts = () => {
-  return dispatch => {
-    dispatch(fetchProducts(true));
+  return (dispatch, getState) => {
+    const { pagination, limit, sortByOnServer } = getState();
+    dispatch(fetchProducts(true, pagination, limit, sortByOnServer));
   };
 };
