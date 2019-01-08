@@ -37,7 +37,9 @@ export const fetchProducts = (
       dispatch(increasePagination());
     }
     ///
-    fetch(GenerateProductsRequestUrl(ServerMainUrl, page, limits, sort))
+    fetch(
+      GenerateProductsRequestUrl(ServerMainUrl, reload ? 1 : page, limits, sort)
+    )
       .then(
         response => response.json(),
         error => {
