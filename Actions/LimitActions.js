@@ -1,8 +1,9 @@
 import { SET_LIMIT_PRODUCTS } from "../Constants/ActionTypes";
 import { fetchProducts } from "./ProductsActions";
-export const setLimitProducts = (page, limit, sortBy) => {
-  return dispatch => {
-    dispatch(fetchProducts(true, page, limit, sortBy));
+export const setLimitProducts = limit => {
+  return (dispatch, getState) => {
+    const { pagination, sortByOnServer } = getState();
+    dispatch(fetchProducts(true, pagination, limit, sortByOnServer));
     dispatch(_setLimitProducts(limit));
   };
 };
