@@ -15,7 +15,7 @@ import {
   fetchPreloadedProducts,
   setPreloadedProduct
 } from "./preloadedProductActions";
-import { increasePagination } from "./PaginationActions";
+import { increasePagination, setPagination } from "./PaginationActions";
 /**
  *
  * @param {Boolean} reload reload whole products list or just add
@@ -35,6 +35,8 @@ export const fetchProducts = (
     if (!reload) {
       dispatch(transferPreloadedToProducts());
       dispatch(increasePagination());
+    } else {
+      dispatch(setPagination(1));
     }
     ///
     fetch(

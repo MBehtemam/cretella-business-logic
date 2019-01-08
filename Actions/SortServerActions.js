@@ -20,7 +20,7 @@ export const sortByIdServer = (page, limit) => {
  * this action sort products by price on server
  */
 export const sortByPriceServer = () => {
-  return dispatch => {
+  return (dispatch, getState) => {
     const { pagination, limit } = getState();
     dispatch(sortByServer(pagination, limit, "price"));
     dispatch(setSortByPriceServer());
