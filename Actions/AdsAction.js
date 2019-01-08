@@ -6,11 +6,11 @@ export const getRandomAdsId = (adsIds, maxIdsHold) => {
       dispatch(clearAdsIds());
       const number = GetRandomId(1, 10, []);
       dispatch(addAdsId(number));
-      return number;
+      return Promise.resolve(number);
     } else {
       const number = GetRandomId(1, 10, adsIds);
       dispatch(addAdsId(number));
-      return number;
+      return Promise.resolve(number);
     }
   };
 };
