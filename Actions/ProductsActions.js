@@ -61,8 +61,7 @@ export const fetchProducts = (
             dispatch(fetchPreloadedProducts(page + 1, limits, sort));
           } else {
             dispatch(
-              // addBatchProducts(json.map(product => ProductReformer(product)))
-              setPreloadedProduct(json)
+              setPreloadedProduct(json.map(product => ProductReformer(product)))
             );
             dispatch(dispatch(increasePagination()));
           }
