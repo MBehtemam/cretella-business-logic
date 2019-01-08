@@ -30,7 +30,9 @@ const productsReducer = (state = [], action) => {
     case PRODUCTS_SET_BATCH:
       return action.payload.products;
     case PRODUCTS_ADD_BATCH:
-      return [...state, ...action.payload.products];
+      console.log(state);
+      console.log(action);
+      return [...state, action.payload.products];
     default:
       return state;
   }
