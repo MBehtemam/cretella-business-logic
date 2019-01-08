@@ -1,8 +1,8 @@
 import { getRandomAdsId } from "../../../Actions/AdsAction";
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch, adsIndex) => {
   return {
-    getRandomAdsId: (adsIds, maxIdsHold) => {
-      dispatch(getRandomAdsId(adsIds, maxIdsHold));
+    getRandomAdsId: adsIndex => {
+      dispatch(getRandomAdsId(adsIndex));
     }
   };
 };
