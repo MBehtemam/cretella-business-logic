@@ -10,6 +10,12 @@ import fetch from "cross-fetch";
 import { ServerMainUrl } from "../Constants/Constants";
 import GenerateProductsRequestUrl from "../Helpers/GenerateRequestProductsUrl";
 import ProductReformer from "../Helpers/ProductReformer";
+import {
+  transferPreloadedToProducts,
+  fetchPreloadedProducts,
+  setPreloadedProduct
+} from "./preloadedProductActions";
+import { increasePagination } from "./PaginationActions";
 /**
  *
  * @param {Boolean} reload reload whole products list or just add
@@ -26,7 +32,10 @@ export const fetchProducts = (
   return dispatch => {
     dispatch(fetchProductsRequest());
     //If Reload is false then ad preloaded product
-
+    if (!reload) {
+      dispatch(transferPreloadedToProducts());
+      dispatch(increasePagination());
+    }
     ///
     fetch(GenerateProductsRequestUrl(ServerMainUrl, page, limits, sort))
       .then(
@@ -45,10 +54,13 @@ export const fetchProducts = (
             dispatch(
               setBatchProduct(json.map(product => ProductReformer(product)))
             );
+            dispatch(fetchPreloadedProducts(page + 1, limits, sort));
           } else {
             dispatch(
-              addBatchProducts(json.map(product => ProductReformer(product)))
+              // addBatchProducts(json.map(product => ProductReformer(product)))
+              setPreloadedProduct(json)
             );
+            dispatch(dispatch(increasePagination()));
           }
         }
       });

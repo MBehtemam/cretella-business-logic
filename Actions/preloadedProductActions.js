@@ -25,9 +25,7 @@ export const transferPreloadedToProducts = () => {
   };
 };
 
-export const fetchPreloadedProducts = ((page = 2),
-(limits = 15),
-(sort = null) => {
+export const fetchPreloadedProducts = (page = 2, limits = 15, sort = null) => {
   return dispatch => {
     fetch(GenerateProductsRequestUrl(ServerMainUrl, page, limits, sort))
       .then(response => response.json(), error => {})
@@ -37,7 +35,7 @@ export const fetchPreloadedProducts = ((page = 2),
         );
       });
   };
-});
+};
 
 export const setPreloadedProduct = products => ({
   type: PRELOADED_PRODUCTS_SET,
