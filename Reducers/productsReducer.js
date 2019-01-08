@@ -8,7 +8,8 @@ import {
   SORT_BY_PRICE_CLIENT_DESC,
   SORT_BY_SIZE_CLIENT_ASC,
   SORT_BY_SIZE_CLIENT_DESC,
-  PRODUCTS_SET_BATCH
+  PRODUCTS_SET_BATCH,
+  PRODUCTS_ADD_BATCH
 } from "../Constants/ActionTypes";
 const productsReducer = (state = [], action) => {
   switch (action.type) {
@@ -28,6 +29,8 @@ const productsReducer = (state = [], action) => {
       return state;
     case PRODUCTS_SET_BATCH:
       return action.payload.products;
+    case PRODUCTS_ADD_BATCH:
+      return [...state, action.payload.products];
     default:
       return state;
   }
