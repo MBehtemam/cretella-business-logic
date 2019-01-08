@@ -6,14 +6,14 @@ import {
 } from "../../../Actions/SortServerActions";
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    sortById: (page, limit) => {
-      dispatch(sortByIdServer(page, limit));
+    sortById: () => {
+      dispatch(sortByIdServer());
     },
-    sortByPrice: (page, limit) => {
-      dispatch(sortByPriceServer(page, limit));
+    sortByPrice: () => {
+      dispatch(sortByPriceServer());
     },
-    sortBySize: (page, limit) => {
-      dispatch(sortBySizeServer(page, limit));
+    sortBySize: () => {
+      dispatch(sortBySizeServer());
     },
     resetSort: () => {
       dispatch(resetSortByServer());
