@@ -18,35 +18,33 @@ export const sortByIdServer = (page, limit) => {
 };
 /**
  * this action sort products by price on server
- * @param {Number} page
- * @param {Number} limit
  */
-export const sortByPriceServer = (page, limit) => {
+export const sortByPriceServer = () => {
   return dispatch => {
-    dispatch(sortByServer(page, limit, "price"));
+    const { pagination, limit } = getState();
+    dispatch(sortByServer(pagination, limit, "price"));
     dispatch(setSortByPriceServer());
   };
 };
 /**
  * this action sort products by size on server
- * @param {Number} page
- * @param {Number} limit
  */
-export const sortBySizeServer = (page, limit) => {
-  return dispatch => {
-    dispatch(sortByServer(page, limit, "size"));
+export const sortBySizeServer = () => {
+  return (dispatch, getState) => {
+    const { pagination, limit } = getState();
+    dispatch(sortByServer(pagination, limit, "size"));
     dispatch(setSortBySizeServer());
   };
 };
 /**
  * this is a main actions for sorting on server
- * @param {Number} page
+ * @param {Number} pagination
  * @param {Number} limit
  * @param {String} sortBy value must be size,price,id,null
  */
-const sortByServer = (page, limit, sortBy) => {
-  return dispatch => {
-    dispatch(fetchProducts(true, page, limit, sortBy));
+const sortByServer = (pagination, limit, sortBy) => {
+  return (dispatch, getState) => {
+    dispatch(fetchProducts(true, pagination, limit, sortBy));
   };
 };
 export const resetSortByServer = () => ({ type: RESET_SORT_BY_SERVER });
