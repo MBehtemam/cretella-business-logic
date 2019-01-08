@@ -1,4 +1,4 @@
-import { increasePagination, setPagination } from "./paginationActions";
+import { increasePagination, setPagination } from "./PaginationActions";
 import {
   INCREASE_PAGINATION_PAGE_NUMBER,
   SET_PAGINATION_PAGE_NUMBER
