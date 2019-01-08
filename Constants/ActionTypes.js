@@ -33,3 +33,5 @@ export const INCREASE_PAGINATION_PAGE_NUMBER =
 
 //Ads
 export const SET_ADS_LAST_ID = "SET_ADS_LAST_ID";
+export const ADS_ADD_ID = "ADS_ADD_ID";
+export const ADS_CLEAR_IDS = "ADS_CLEAR_IDS";

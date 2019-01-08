@@ -1,14 +1,21 @@
-import { SET_ADS_LAST_ID } from "../Constants/ActionTypes";
+import { ADS_ADD_ID, ADS_CLEAR_IDS } from "../Constants/ActionTypes";
 export const defaultState = {
   adsPerProduct: 20,
-  lastId: -1
+  maxIdsHold: 10,
+  IDs: []
 };
 const adsReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case SET_ADS_LAST_ID: {
+    case ADS_CLEAR_IDS: {
       return {
         ...state,
-        lastId: action.payload.lastId
+        IDs: []
+      };
+    }
+    case ADS_ADD_ID: {
+      return {
+        ...state,
+        IDs: [...state.IDs, action.payload]
       };
     }
     default:
