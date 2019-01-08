@@ -25,6 +25,9 @@ export const fetchProducts = (
 ) => {
   return dispatch => {
     dispatch(fetchProductsRequest());
+    //If Reload is false then ad preloaded product
+
+    ///
     fetch(GenerateProductsRequestUrl(ServerMainUrl, page, limits, sort))
       .then(
         response => response.json(),
