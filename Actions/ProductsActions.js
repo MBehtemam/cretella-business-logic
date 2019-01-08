@@ -72,3 +72,9 @@ const setBatchProduct = products => ({
     products
   }
 });
+
+export const initialProducts = () => {
+  return dispatch => {
+    dispatch(fetchProducts());
+  };
+};
