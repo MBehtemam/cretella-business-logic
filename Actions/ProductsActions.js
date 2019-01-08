@@ -75,6 +75,6 @@ const setBatchProduct = products => ({
 
 export const initialProducts = () => {
   return dispatch => {
-    dispatch(fetchProducts());
+    dispatch(fetchProducts(true));
   };
 };
