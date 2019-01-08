@@ -16,4 +16,18 @@ describe("Test suits for ads reducer", () => {
         .length
     ).toBe(0);
   });
+  it("should has id of `ads10` on Ids", () => {
+    expect(
+      Object.keys(
+        adsReducer(undefined, {
+          type: ADS_ADD_BLACK_AND_WHITE_ID,
+          payload: {
+            whiteIndex: "ads10",
+            whiteId: 10,
+            blackId: 10
+          }
+        }).IDS
+      )
+    ).toContain("ads10");
+  });
 });

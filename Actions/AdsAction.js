@@ -28,7 +28,7 @@ export const clearBlackListAdsIds = () => ({
 export const addAdsBlackAndWhiteId = (whiteId, whiteIndex, blackId) => ({
   type: ADS_ADD_BLACK_AND_WHITE_ID,
   payload: {
-    index: whiteIndex,
+    whiteIndex,
     whiteId,
     blackId
   }

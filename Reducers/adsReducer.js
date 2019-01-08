@@ -21,9 +21,10 @@ const adsReducer = (state = defaultState, action) => {
     case ADS_ADD_BLACK_AND_WHITE_ID: {
       return {
         ...state,
-        blackListId: [...state.IDs, action.payload.blackId],
+        blackListId: [...state.blackListId, action.payload.blackId],
         IDS: {
-          [action.payload.index]: action.payload.whiteId
+          ...state.IDS,
+          [action.payload.whiteIndex]: action.payload.whiteId
         }
       };
     }
@@ -34,7 +35,7 @@ const adsReducer = (state = defaultState, action) => {
         blackListId: [...state.IDs, action.payload],
         IDS: {
           ...state.IDS,
-          [action.payload.index]: action.payload.whiteId
+          [action.payload.whiteIndex]: action.payload.whiteId
         }
       };
     }
@@ -43,7 +44,7 @@ const adsReducer = (state = defaultState, action) => {
         ...state,
         IDS: {
           ...state.IDS,
-          [action.payload.index]: action.payload.whiteId
+          [action.payload.whiteIndex]: action.payload.whiteId
         }
       };
     }
