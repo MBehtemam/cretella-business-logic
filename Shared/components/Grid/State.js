@@ -1,8 +1,7 @@
 const mapStateToProps = (state, ownProps) => {
   return {
     products: state.products,
-    pagination: state.pagination,
-    ads: state.ads
+    pagination: state.pagination
   };
 };
 export default mapStateToProps;
