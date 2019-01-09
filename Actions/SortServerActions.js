@@ -23,7 +23,7 @@ export const sortByIdServer = (page, limit) => {
 export const sortByPriceServer = () => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-      dispatch(setSortByPriceServer());
+      return dispatch(setSortByPriceServer());
     }).then(() => {
       const { pagination, limit } = getState();
       dispatch(sortByServer(pagination, limit, "price"));
