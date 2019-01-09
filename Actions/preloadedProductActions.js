@@ -20,9 +20,8 @@ export const clearPreloadedProducts = () => ({
 export const transferPreloadedToProducts = () => {
   return (dispatch, getState) => {
     const { preloadeProducts } = getState();
-    dispatch(addBatchProducts(preloadeProducts)).then(() => {
-      dispatch(clearPreloadedProducts());
-    });
+    dispatch(addBatchProducts(preloadeProducts));
+    dispatch(clearPreloadedProducts());
   };
 };
 
