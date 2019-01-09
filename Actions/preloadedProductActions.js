@@ -28,7 +28,11 @@ export const transferPreloadedToProducts = () => {
 };
 
 export const fetchPreloadedProducts = (page = 2, limits = 15, sort = null) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const {
+      fetchStatus: { isFetching }
+    } = getState;
+    if (isFetching) return;
     fetch(GenerateProductsRequestUrl(ServerMainUrl, page, limits, sort))
       .then(response => response.json(), error => {})
       .then(json => {
