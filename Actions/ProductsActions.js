@@ -25,14 +25,12 @@ import { increasePagination, setPagination } from "./PaginationActions";
  * @param {Number} limits limist of product
  * @param {Number} sort sort by product
  */
-export const fetchProducts = (
-  reload = false,
-  pagination,
-  limit,
-  sortByOnServer
-) => {
+export const fetchProducts = (reload = false) => {
   return (dispatch, getState) => {
     let {
+      pagination,
+      limit,
+      sortByOnServer,
       fetchStatus: { isFetching }
     } = getState();
     dispatch(fetchProductsRequest());
@@ -71,7 +69,7 @@ export const fetchProducts = (
             dispatch(
               setBatchProduct(json.map(product => ProductReformer(product)))
             );
-            dispatch(fetchProducts(false, pagination, limit, sortByOnServer));
+            dispatch(fetchProducts(false));
           } else {
             dispatch(
               setPreloadedProduct(json.map(product => ProductReformer(product)))
@@ -105,14 +103,12 @@ const setBatchProduct = products => ({
 
 export const initialProducts = () => {
   return (dispatch, getState) => {
-    const { limit, pagination, sortByOnServer } = getState();
-    dispatch(fetchProducts(true, limit, pagination, sortByOnServer));
+    dispatch(fetchProducts(true));
   };
 };
 
 export const loadMoreProducts = () => {
   return (dispatch, getState) => {
-    const { limit, pagination, sortByOnServer } = getState();
-    dispatch(fetchProducts(false, limit, pagination, sortByOnServer));
+    dispatch(fetchProducts(false));
   };
 };

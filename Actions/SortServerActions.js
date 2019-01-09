@@ -5,6 +5,7 @@ import {
   RESET_SORT_BY_SERVER
 } from "../Constants/ActionTypes";
 import { fetchProducts } from "./ProductsActions";
+import { reject } from "rsvp";
 /**
  * this action get page number and limit of products request and sort by id from server
  * @param {Number} page
@@ -21,9 +22,12 @@ export const sortByIdServer = (page, limit) => {
  */
 export const sortByPriceServer = () => {
   return (dispatch, getState) => {
-    const { pagination, limit } = getState();
-    dispatch(sortByServer(pagination, limit, "price"));
-    dispatch(setSortByPriceServer());
+    return new Promise((resolve, reject) => {
+      dispatch(setSortByPriceServer());
+    }).then(() => {
+      const { pagination, limit } = getState();
+      dispatch(sortByServer(pagination, limit, "price"));
+    });
   };
 };
 /**
