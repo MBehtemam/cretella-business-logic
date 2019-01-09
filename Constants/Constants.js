@@ -1,1 +1,1 @@
-export const ServerMainUrl = `http://localhost:3000`;
+export const ServerMainUrl = `http://192.168.1.41:3000`;

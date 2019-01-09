@@ -3,10 +3,9 @@
  * @param {Number} cents cents price of product
  */
 const priceFormatter = cents =>
-  new Intl.NumberFormat("en-US", {
+  (cents / 100).toLocaleString("en-US", {
     style: "currency",
-    currency: "USD",
-    minimumFractionDigits: 2
-  }).format(cents / 100);
+    currency: "USD"
+  });
 
 export default priceFormatter;
