@@ -3,6 +3,7 @@ import {
   PRELOADED_PRODUCTS_SET
 } from "../Constants/ActionTypes";
 import { addBatchProducts } from "./ProductsActions";
+import { increasePagination } from "./PaginationActions";
 import fetch from "cross-fetch";
 import { ServerMainUrl } from "../Constants/Constants";
 import GenerateProductsRequestUrl from "../Helpers/GenerateRequestProductsUrl";
@@ -33,6 +34,7 @@ export const fetchPreloadedProducts = (page = 2, limits = 15, sort = null) => {
         dispatch(
           setPreloadedProduct(json.map(product => ProductReformer(product)))
         );
+        dispatch(increasePagination());
       });
   };
 };

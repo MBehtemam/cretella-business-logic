@@ -13,7 +13,8 @@ import ProductReformer from "../Helpers/ProductReformer";
 import {
   transferPreloadedToProducts,
   fetchPreloadedProducts,
-  setPreloadedProduct
+  setPreloadedProduct,
+  clearPreloadedProducts
 } from "./preloadedProductActions";
 import { increasePagination, setPagination } from "./PaginationActions";
 /**
@@ -41,11 +42,11 @@ export const fetchProducts = (
       dispatch(increasePagination());
     } else {
       dispatch(setPagination(1));
+      dispatch(clearPreloadedProducts());
     }
+    const newPage = reload ? 1 : page;
     ///
-    fetch(
-      GenerateProductsRequestUrl(ServerMainUrl, reload ? 1 : page, limits, sort)
-    )
+    fetch(GenerateProductsRequestUrl(ServerMainUrl, newPage, limits, sort))
       .then(
         response => response.json(),
         error => {
@@ -62,7 +63,7 @@ export const fetchProducts = (
             dispatch(
               setBatchProduct(json.map(product => ProductReformer(product)))
             );
-            dispatch(fetchPreloadedProducts(page + 1, limits, sort));
+            dispatch(fetchPreloadedProducts(newPage + 1, limits, sort));
           } else {
             dispatch(
               setPreloadedProduct(json.map(product => ProductReformer(product)))
