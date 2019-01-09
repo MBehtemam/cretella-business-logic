@@ -10,7 +10,7 @@ import fetch from "cross-fetch";
 import { ServerMainUrl } from "../Constants/Constants";
 import GenerateProductsRequestUrl from "../Helpers/GenerateRequestProductsUrl";
 import ProductReformer from "../Helpers/ProductReformer";
-import config from "config";
+import Constants from "../config/default";
 import {
   transferPreloadedToProducts,
   fetchPreloadedProducts,
@@ -47,7 +47,7 @@ export const fetchProducts = (reload = false) => {
 
     fetch(
       GenerateProductsRequestUrl(
-        config.get("ServerMainUrl"),
+        Constants.ServerMainUrl,
         pagination,
         limit,
         sortByOnServer
