@@ -32,7 +32,6 @@ export const fetchProducts = (reload = false) => {
       sortByOnServer,
       fetchStatus: { isFetching }
     } = getState();
-    if (isFetching) return;
     dispatch(fetchProductsRequest());
     //If Reload is false then ad preloaded product
     if (!reload) {
