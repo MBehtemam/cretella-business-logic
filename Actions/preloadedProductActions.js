@@ -8,6 +8,7 @@ import fetch from "cross-fetch";
 import { ServerMainUrl } from "../Constants/Constants";
 import GenerateProductsRequestUrl from "../Helpers/GenerateRequestProductsUrl";
 import ProductReformer from "../Helpers/ProductReformer";
+
 /**
  * Clear list of preloaded products
  */

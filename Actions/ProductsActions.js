@@ -26,7 +26,7 @@ import { increasePagination, setPagination } from "./PaginationActions";
  */
 export const fetchProducts = (reload = false) => {
   return (dispatch, getState) => {
-    const {
+    let {
       pagination,
       limit,
       sortByOnServer,
@@ -38,14 +38,20 @@ export const fetchProducts = (reload = false) => {
     if (!reload) {
       dispatch(transferPreloadedToProducts());
       dispatch(increasePagination());
+      pagination += 1;
     } else {
       dispatch(setPagination(1));
+      pagination = 1;
       dispatch(clearPreloadedProducts());
     }
-    const page = reload ? 1 : pagination + 1;
-    ///
+
     fetch(
-      GenerateProductsRequestUrl(ServerMainUrl, page, limit, sortByOnServer)
+      GenerateProductsRequestUrl(
+        ServerMainUrl,
+        pagination,
+        limit,
+        sortByOnServer
+      )
     )
       .then(
         response => response.json(),
@@ -63,7 +69,7 @@ export const fetchProducts = (reload = false) => {
             dispatch(
               setBatchProduct(json.map(product => ProductReformer(product)))
             );
-            dispatch(fetchPreloadedProducts(page + 1, limit, sortByOnServer));
+            dispatch(fetchPreloadedProducts(pagination, limit, sortByOnServer));
           } else {
             dispatch(
               setPreloadedProduct(json.map(product => ProductReformer(product)))
@@ -98,8 +104,7 @@ const setBatchProduct = products => ({
 
 export const initialProducts = () => {
   return (dispatch, getState) => {
-    const { pagination, limit, sortByOnServer } = getState();
-    dispatch(fetchProducts(true, pagination, limit, sortByOnServer));
+    dispatch(fetchProducts(true));
   };
 };
 

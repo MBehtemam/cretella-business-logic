@@ -32,7 +32,7 @@ const adsReducer = (state = defaultState, action) => {
       return {
         ...state,
 
-        blackListId: [...state.IDs, action.payload],
+        blackListId: [...state.IDs, action.payload.blackId],
         IDS: {
           ...state.IDS,
           [action.payload.whiteIndex]: action.payload.whiteId
