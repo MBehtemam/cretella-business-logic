@@ -32,9 +32,11 @@ export const fetchProducts = (
 ) => {
   return (dispatch, getState) => {
     const {
+      pagination,
       fetchStatus: { isFetching }
     } = getState();
     if (isFetching) return;
+    if (page < pagination) return;
     dispatch(fetchProductsRequest());
     //If Reload is false then ad preloaded product
     if (!reload) {
