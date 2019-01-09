@@ -29,7 +29,11 @@ export const fetchProducts = (
   limits = 15,
   sort = null
 ) => {
-  return dispatch => {
+  return (dispatch, getState) => {
+    const {
+      fetchStatus: { isFetching }
+    } = getState();
+    if (isFetching) return;
     dispatch(fetchProductsRequest());
     //If Reload is false then ad preloaded product
     if (!reload) {
