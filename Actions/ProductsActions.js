@@ -33,7 +33,6 @@ export const fetchProducts = (reload = false) => {
       fetchStatus: { isFetching }
     } = getState();
     if (isFetching) return;
-    if (page < pagination) return;
     dispatch(fetchProductsRequest());
     //If Reload is false then ad preloaded product
     if (!reload) {
@@ -43,7 +42,7 @@ export const fetchProducts = (reload = false) => {
       dispatch(setPagination(1));
       dispatch(clearPreloadedProducts());
     }
-    const page = reload ? 1 : pagination;
+    const page = reload ? 1 : pagination + 1;
     ///
     fetch(
       GenerateProductsRequestUrl(ServerMainUrl, page, limit, sortByOnServer)
@@ -106,7 +105,6 @@ export const initialProducts = () => {
 
 export const loadMoreProducts = () => {
   return (dispatch, getState) => {
-    const { pagination, limit, sortByOnServer } = getState();
-    dispatch(fetchProducts(false, pagination + 1, limit, sortByOnServer));
+    dispatch(fetchProducts(false));
   };
 };
